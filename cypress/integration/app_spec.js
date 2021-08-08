@@ -10,19 +10,20 @@ describe('Sign Up', () => {
     cy.get('input[name="email"]')
       .click()
       .type('some@email.com')
+      .should('have.value','some@email.com')
 
     cy.get('select[name="department"]')
       .select('core')
       .should('have.value', 'core')
 
-    cy.get('select[name="course"]')
+    cy.get('select[name="course"]',{timeout:2000})
       .select('git-it')
       .should('have.value', 'git-it')
 
     cy.get('input[type="submit"]')
       .click()
 
-    cy.get('li')
+    cy.get('li',{timeout:5500})
       .should('contain', 'Some Name - some@email.com - core - git-it')
   })
 })
